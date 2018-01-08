@@ -1,8 +1,13 @@
 package com.stickles.discord.trumpbot;
 
+import java.io.BufferedReader;
 import java.io.Console;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javax.security.auth.login.LoginException;
+
+import java.io.InputStream;
 
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
@@ -16,20 +21,28 @@ import net.dv8tion.jda.core.exceptions.RateLimitedException;
 public class TrumpBot {
 
 	public static JDA jda;
-	// static String token = "MzIxMDk3NjA0MTMxNzE3MTIw.DBt2Mg.C2XjfTCAjXAZB7tGGfFqDmgm-rc"; //TrumpBot's special token
-	static String token = "MzkzMTUyNTM4MzA5ODIwNDE2.DRxnZw.i0KWff0hXeAH3khJN1XsfqFnGew"; // TrumpBeta's special token
+	
+	static InputStream tokenIS = TrumpBot.class.getResourceAsStream("/token"); 
+	static BufferedReader reader = new BufferedReader(new InputStreamReader(tokenIS));
+	static String token;
 	static String prefix;
 	static String mention;
 	static boolean running = true;
 	static int timeoutSeconds = 10;
 
 	public static void main(String[] args) throws LoginException, RateLimitedException, InterruptedException {
-
+			try {
+				token = reader.readLine();
+			} catch (IOException e) {
+				System.err.println("The file '/bin/token.txt' does not exist.");
+				System.exit(1);
+			}
+		
 		Console c = System.console();
-		if (c == null) {
-			System.err.println("No console.");
-			System.exit(1);
-		}
+		//if (c == null) {
+		//	System.err.println("No console.");
+		//	System.exit(1);
+		//}
 
 		jda = new JDABuilder(AccountType.BOT) // Configure the bot before starting it
 				.setToken(token).setStatus(OnlineStatus.ONLINE)
