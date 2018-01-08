@@ -39,10 +39,10 @@ public class TrumpBot {
 			}
 		
 		Console c = System.console();
-		//if (c == null) {
-		//	System.err.println("No console.");
-		//	System.exit(1);
-		//}
+		if (c == null) {
+			System.err.println("No console.");
+			System.exit(1);
+		}
 
 		jda = new JDABuilder(AccountType.BOT) // Configure the bot before starting it
 				.setToken(token).setStatus(OnlineStatus.ONLINE)
