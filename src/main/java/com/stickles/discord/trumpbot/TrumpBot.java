@@ -22,7 +22,7 @@ public class TrumpBot {
 
 	public static JDA jda;
 	
-	static InputStream tokenIS = TrumpBot.class.getResourceAsStream("/token"); 
+	static InputStream tokenIS = TrumpBot.class.getResourceAsStream("/resources/token"); 
 	static BufferedReader reader = new BufferedReader(new InputStreamReader(tokenIS));
 	static String token;
 	static String prefix;
