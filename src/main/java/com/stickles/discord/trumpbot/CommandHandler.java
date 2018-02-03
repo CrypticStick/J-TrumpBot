@@ -43,8 +43,7 @@ public class CommandHandler extends ListenerAdapter {
 		        }
 		}
 		
-		String username = String.format("%s#%s", e.getAuthor().getName(), e.getAuthor().getDiscriminator());
-		Commands.sendMessage(e,String.format("Sorry %s, I do not recognize this command.", username));
+		Commands.sendMessage(e,String.format("Sorry %s, I do not recognize this command.", e.getAuthor().getAsMention()));
 	}
 
 }

@@ -2,7 +2,6 @@ package com.stickles.discord.trumpbot;
 
 import java.io.BufferedReader;
 import java.io.Console;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 import javax.security.auth.login.LoginException;
@@ -23,7 +22,6 @@ public class TrumpBot {
 	public static JDA jda;
 	
 	static InputStream tokenIS = TrumpBot.class.getResourceAsStream("/resources/token"); 
-	static BufferedReader reader = new BufferedReader(new InputStreamReader(tokenIS));
 	static String token;
 	static String prefix;
 	static String mention;
@@ -31,18 +29,21 @@ public class TrumpBot {
 	static int timeoutSeconds = 10;
 
 	public static void main(String[] args) throws LoginException, RateLimitedException, InterruptedException {
-			try {
-				token = reader.readLine();
-			} catch (IOException e) {
-				System.err.println("The file '/bin/token.txt' does not exist.");
-				System.exit(1);
-			}
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(tokenIS));
+			token = reader.readLine();
+		} catch (Exception e) {
+			System.err.println("The token file does not exist or is corrupt. This means code broke. Woops.");
+			System.exit(1);
+		}
 		
 		Console c = System.console();
 		if (c == null) {
 			System.err.println("No console.");
 			System.exit(1);
 		}
+		
+		System.out.println("Starting up bot...");
 
 		jda = new JDABuilder(AccountType.BOT) // Configure the bot before starting it
 				.setToken(token).setStatus(OnlineStatus.ONLINE)
@@ -57,7 +58,6 @@ public class TrumpBot {
 				System.out.print("\r" + jda.getStatus().toString());
 				Thread.sleep(500);
 			}
-
 			else {
 				System.out.println(
 						"Error: the bot failed to connect. This could either be because the token is incorrect, or because Stickles completely broke the code :P");

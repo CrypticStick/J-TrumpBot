@@ -57,7 +57,7 @@ public class Commands {
 		        	if (!m.getAnnotation(Command.class).SpecialPerms().isEmpty())
 		        		SpecialPerms = " **<" + m.getAnnotation(Command.class).SpecialPerms() + ">**";
 		        	if (!m.getAnnotation(Command.class).Syntax().isEmpty())
-		        		Syntax = " `" + m.getAnnotation(Command.class).Syntax() + "`";
+		        		Syntax = " ~ `" + m.getAnnotation(Command.class).Syntax() + "`";
 		        	helpMsg += String.format("`%s%s%s` - %s%s%s\n",TrumpBot.prefix,Name,formattedAliases,Summary,SpecialPerms,Syntax);
 		        	}
 		        }
@@ -97,6 +97,16 @@ public class Commands {
 		Random rnd = new Random();
         Integer randomInt = rnd.nextInt(100);
         sendMessage(e,randomInt.toString());
+	}
+	
+	@Command(Name = "b",
+			Summary = ":b:oi :b:e :b:lessed with the auto :b: converter",
+			Syntax = "b [enable | disable]")
+	public static void BisFOrBUPBoiXDXDBONALDBUMPHERE(MessageReceivedEvent e, ArrayList<String> args) {
+		
+		sendMessage(e,"Coming soon to theaters near YOU.");
+		//e.getMessage().delete().queue();
+		
 	}
 
 }
