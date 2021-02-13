@@ -1,4 +1,7 @@
 # J-TrumpBot
+
+> Note: This bot was just a test; see my main [Java DiscordBot repository](https://github.com/CrypticStick/DiscordBot).
+
 The java version of our favorite Discord bot!
 
 You can add him to your server here:
